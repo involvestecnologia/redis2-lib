@@ -1,0 +1,26 @@
+version: '3.7'
+services:
+  redis:
+    image: "redis:alpine"
+    container_name: redis2-lib
+    restart: always
+    networks:
+      - redis2-lib-network
+
+  test:
+    build: 
+      context: .
+      target: test
+    image: "test_redis-lib:latest"
+    networks:
+      - redis2-lib-network
+    depends_on:
+      - redis
+    environment:
+      - LOG_LEVEL=error
+      - REDIS_URL=redis2-lib
+      - WAIT_HOSTS=redis2-lib:6379
+
+networks:
+  redis2-lib-network:
+    driver: bridge
