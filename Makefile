@@ -1,4 +1,4 @@
-export PROJECT_NAME = reddis2-lib
+export PROJECT_NAME = redis2-lib
 
 export COMPOSE_DOCKER_CLI_BUILD = 1
 export DOCKER_BUILDKIT = 1
