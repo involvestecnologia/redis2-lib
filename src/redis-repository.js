@@ -18,6 +18,11 @@ class RedisRepository {
     return this.connection.incr(key)
   }
 
+  static async decrKey (key) {
+    await this.setConnection()
+    return this.connection.decr(key)
+  }
+
   static async getIncrKey (key) {
     await this.setConnection()
     const value = await this.connection.get(key)

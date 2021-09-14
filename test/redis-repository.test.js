@@ -83,4 +83,25 @@ describe('Integration tests for RedisRepository', function () {
   it('should return ping', async function () {
     await assert.doesNotReject(() => RedisRepository.ping())
   })
+
+  it('should decr key', async function () {
+    const totalIncrement = 10
+    const promises = []
+
+    for (let index = 0; index < totalIncrement; index += 1) {
+      promises.push(RedisRepository.incrKey(keyMock))
+    }
+
+    await Promise.all(promises)
+
+    const valueBefore = await connection.get(keyMock)
+
+    assert.equal(parseInt(valueBefore, 10), totalIncrement)
+
+    await RedisRepository.decrKey(keyMock)
+
+    const valueAfter = await connection.get(keyMock)
+
+    assert.equal(parseInt(valueAfter, 10), totalIncrement - 1)
+  })
 })
