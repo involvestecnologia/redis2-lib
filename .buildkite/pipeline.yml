@@ -65,7 +65,7 @@ steps:
       - git config --global user.email $$TEAM_EMAIL
       - git config --global user.name "Buildkite"
       - git checkout master && git fetch && git pull --rebase
-      - docker build --build-arg NPM_TOKEN=$$NPM_TOKEN --tag=$$BUILDKITE_BUILD_ID --target=publish .
+      - docker build --build-arg NPM_TOKEN=$$GP_TOKEN --tag=$$BUILDKITE_BUILD_ID --target=publish .
       - docker run --name=$$BUILDKITE_BUILD_ID $$BUILDKITE_BUILD_ID
       - docker cp $$BUILDKITE_BUILD_ID:/data/package.json .
       - docker rm -vf $$BUILDKITE_BUILD_ID

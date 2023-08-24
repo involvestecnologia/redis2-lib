@@ -1,5 +1,5 @@
 {
-  "name": "@involves/redis2-lib",
+  "name": "@involvestecnologia/redis2-lib",
   "version": "0.0.12",
   "description": "",
   "main": "index.js",
@@ -10,6 +10,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/involvestecnologia/redis2-lib.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   },
   "keywords": [
     "redis"
